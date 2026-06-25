@@ -4,7 +4,7 @@ import { View } from "react-native";
 export default function IndexPage() {
 	return (
 		<View className="items-center justify-center flex-1">
-			<AppText className="text-black text-2xl">Home</AppText>
+			<AppText className="text-black text-2xl">Config</AppText>
 		</View>
 	);
 }

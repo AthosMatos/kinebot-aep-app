@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect } from "react";
+import { createContext, useContext } from "react";
 import {
     type Control,
     type DefaultValues,
@@ -37,15 +37,8 @@ export const AppFormProvider = <T extends FieldValues>({
         formState: { isValid },
         getValues,
         watch,
-        trigger,
     } = useForm<T>({ resolver, mode: "onChange", defaultValues });
 
-    // When editing an existing record, defaultValues are pre-filled but validation
-    // hasn't run yet, so isValid starts false. Trigger it once on mount to fix that.
-    useEffect(() => {
-        if (defaultValues) trigger();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
 
     const values = watch();
     return (

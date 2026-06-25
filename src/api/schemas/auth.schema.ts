@@ -6,11 +6,13 @@ export const loginSchema = z.object({
         .min(1, "Email é obrigatório")
         .trim(),
     password: z
-        .string()
-        .min(1, "Senha é obrigatória")
+        .string('Senha é obrigatória')
+        .min(1, "Senha é obrigatória"),
+    shouldPersist: z.boolean()
 });
 
 export type loginInput = {
     email: string
     password: string
+    shouldPersist: boolean
 }

@@ -1,6 +1,7 @@
+import { appColors } from "@/constants/colors";
 import { LucideIcon } from "lucide-react-native";
 import { type Control, Controller, type FieldValues, type Path } from "react-hook-form";
-import { TextInputProps, TouchableOpacity } from "react-native";
+import { TextInputProps, TouchableOpacity, View } from "react-native";
 import { InputContainer, InputError, InputLabel, StyledInput, TextInputContainer } from "./styled";
 
 export type FormInputProps<T extends FieldValues> = TextInputProps & {
@@ -24,13 +25,15 @@ export const FormInput = <T extends FieldValues>({ label, icon, control, name, .
 			name={name}
 			render={({ field, fieldState: { error } }) => (
 				<InputContainer>
-					{label && <InputLabel>{label}</InputLabel>}
-					{error && <InputError>{error.message}</InputError>}
+					<View className="flex-row items-center gap-2">
+						{label && <InputLabel>{label}</InputLabel>}
+						{error && <InputError>{error.message}</InputError>}
+					</View>
 					<TextInputContainer>
-						{LeftIcon ? <LeftIcon size={24} /> : null}
+						{LeftIcon ? <LeftIcon size={24} color={appColors.neutral.medium} /> : null}
 						<StyledInput {...rest} {...field} onChangeText={field.onChange} />
-						{RightIcon ? <TouchableOpacity onPress={icon.onRightIconPress} disabled={!!icon.onRightIconPress}>
-							<RightIcon size={24} />
+						{RightIcon ? <TouchableOpacity onPress={icon.onRightIconPress} disabled={!icon.onRightIconPress}>
+							<RightIcon size={24} color={appColors.neutral.medium} />
 						</TouchableOpacity> : null}
 					</TextInputContainer>
 				</InputContainer>

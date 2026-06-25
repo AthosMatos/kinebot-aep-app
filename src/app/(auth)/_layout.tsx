@@ -1,42 +1,22 @@
+import { LoginLayout } from "@/components/login/login-layout";
 import { Stack } from "expo-router";
-import { StyleSheet, View } from "react-native";
-
-const styles = StyleSheet.create({
-	layoutContainer: {
-		flex: 1,
-	},
-	logoContainer: {
-		justifyContent: "space-between",
-		alignItems: "center",
-		paddingHorizontal: 20,
-	},
-	contentContainer: {
-		flex: 1,
-		padding: 16,
-	},
-});
-
-const Layout = ({ children }: { children: React.ReactNode }) => {
-
-	return (
-		<View
-			style={styles.layoutContainer}
-		>
-			{children}
-		</View>
-	);
-};
+import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function ScreenLayout() {
 	return (
-		<Layout>
-			<Stack
-				screenOptions={{
-					headerShown: false,
-					animation: "ios_from_right",
-					contentStyle: { backgroundColor: "transparent" },
-				}}
-			/>
-		</Layout>
+		<KeyboardAwareScrollView contentContainerClassName="flex-1">
+			<LoginLayout />
+
+			<SafeAreaView className="flex-1">
+				<Stack
+					screenOptions={{
+						headerShown: false,
+						animation: "ios_from_right",
+						contentStyle: { backgroundColor: "transparent" },
+					}}
+				/>
+			</SafeAreaView>
+		</KeyboardAwareScrollView>
 	);
 }

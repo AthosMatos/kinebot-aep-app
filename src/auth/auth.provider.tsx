@@ -29,6 +29,7 @@ interface AuthContextProps {
 	};
 	isLoggedIn: boolean;
 	isConnected: boolean;
+	setShouldSaveUser: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const AuthContext = createContext<AuthContextProps | null>(null);
@@ -47,6 +48,7 @@ SplashScreen.preventAutoHideAsync();
 
 export function AuthProvider({ children }: PropsWithChildren) {
 	const [isMounted, setIsMounted] = useState(false);
+	const [shouldSaveUser, setShouldSaveUser] = useState(false)
 
 	const logout = useSetAtom(logoutAtom);
 
@@ -61,7 +63,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
 	const netInfo = useNetInfo();
 
 	const isConnected = useMemo(() => !!netInfo.isConnected, [netInfo.isConnected]);
-	const isLoggedIn = useMemo(() => !!authToken, [authToken]);
+	const [isLoggedIn, setIsLoggedIn] = useState(false)
 
 	const signIn = useCallback(
 		async (formValues: loginInput) => {
@@ -78,18 +80,19 @@ export function AuthProvider({ children }: PropsWithChildren) {
 				console.log("Login bem-sucedido:", token, user);
 
 				// Salvar estados de autenticação com jotai storage
-				saveAuthStates({ token, user });
-
+				if (shouldSaveUser) saveAuthStates({ token, user });
+				setIsLoggedIn(true)
 				//router.dismissAll();
 			} catch (error) {
 				throw error;
 			}
 		},
-		[queryClient]
+		[queryClient, shouldSaveUser]
 	);
 
 	const signOut = useCallback(async () => {
 		try {
+			setIsLoggedIn(false)
 			// logoutAtom já cancela/limpa o queryClient e remove TODAS as chaves
 			// persistidas do usuário (token, user, address, credenciais, etc).
 			await logout();
@@ -100,6 +103,9 @@ export function AuthProvider({ children }: PropsWithChildren) {
 		}
 	}, []);
 
+	useEffect(() => {
+		setIsMounted(true);
+	}, []);
 
 	// Register the logout callback for the axios 401 interceptor
 	useEffect(() => {
@@ -110,9 +116,6 @@ export function AuthProvider({ children }: PropsWithChildren) {
 		};
 	}, [signOut]);
 
-	useEffect(() => {
-		setIsMounted(true);
-	}, []);
 
 	useEffect(() => {
 		if (isMounted) {
@@ -124,6 +127,10 @@ export function AuthProvider({ children }: PropsWithChildren) {
 		}
 	}, [isMounted]);
 
+
+	useEffect(() => {
+		authToken && setIsLoggedIn(true)
+	}, [authToken])
 
 	return (
 		<AuthContext.Provider
@@ -141,6 +148,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
 				},
 				isLoggedIn,
 				isConnected,
+				setShouldSaveUser
 			}}
 		>
 			{children}

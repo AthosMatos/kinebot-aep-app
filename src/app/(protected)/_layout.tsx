@@ -1,5 +1,14 @@
-import { DefaultStack } from "@/components/defaultStack";
+import BottomTabs from "@/components/layout/bottom-tabs";
+import { Slot } from "expo-router";
+import { View } from "react-native";
 
-export default function ScreenLayout() {
-	return <DefaultStack />;
+
+function Layout() {
+  return <View className="flex-1 ">
+    <Slot />
+    <BottomTabs />
+  </View>
+
 }
+
+export default Layout;

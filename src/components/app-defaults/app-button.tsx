@@ -18,10 +18,10 @@ const variantStyles = {
 		borderWidth: 0,
 	},
 	outline: {
-		backgroundColor: "transparent",
+		backgroundColor: "white",
 		textColor: appColors.primary,
 		iconColor: appColors.primary,
-		borderColor: appColors.primary,
+		borderColor: appColors.neutral.medium,
 		borderWidth: 1,
 	},
 	disabled: {
@@ -38,6 +38,13 @@ const variantStyles = {
 		borderColor: "transparent",
 		borderWidth: 0,
 	},
+	delete: {
+		backgroundColor: "white",
+		textColor: appColors.feedback.danger,
+		iconColor: appColors.feedback.danger,
+		borderColor: appColors.neutral.medium,
+		borderWidth: 1,
+	}
 };
 
 type ButtonVariant = keyof typeof variantStyles;
@@ -74,15 +81,6 @@ export const AppButton = ({
 
 	return (
 		<TouchableOpacity
-			className={[
-				"justify-center items-center",
-				isIconOnly
-					? "w-[50px] h-[50px] rounded-full p-3"
-					: `${fitWidth ? "" : "w-full"} h-[50px] rounded-lg px-4`,
-				small ? "h-10 px-2" : "",
-			]
-				.join(" ")
-				.trim()}
 			style={[
 				{
 					backgroundColor: variantStyle.backgroundColor,
@@ -94,6 +92,16 @@ export const AppButton = ({
 			disabled={isDisabled}
 			activeOpacity={0.8}
 			{...props}
+			className={[
+				props.className,
+				"justify-center items-center h-[50px]",
+				isIconOnly
+					? "w-[50px] rounded-full p-3"
+					: `rounded-lg px-4`,
+				small ? "h-10 px-2" : "",
+			]
+				.join(" ")
+				.trim()}
 		>
 			{isLoading ? (
 				<ActivityIndicator size="small" color={textColor ?? variantStyle.textColor} />
@@ -102,7 +110,7 @@ export const AppButton = ({
 					{customIcon}
 					{icon && <Ionicons name={icon} size={20} color={iconColor ?? variantStyle.iconColor} />}
 					{children && (
-						<AppText style={{ color: textColor ?? variantStyle.textColor }}>{children}</AppText>
+						<AppText style={{ fontSize: 16, color: textColor ?? variantStyle.textColor, }}>{children}</AppText>
 					)}
 				</View>
 			)}

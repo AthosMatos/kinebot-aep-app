@@ -2,7 +2,9 @@ import { AppSelect, type SelectOption } from "@/components/app-defaults/app-sele
 import { type DateInputProps, FormDateInput } from "@/components/form/inputs/date";
 import { FormSwitch, type SwitchProps } from "@/components/form/inputs/switch";
 import { FormInput, type FormInputProps } from "@/components/form/inputs/text";
+import { ReactNode } from "react";
 import { type Control, Controller, type FieldValues, type Path } from "react-hook-form";
+import { CheckBoxProps, FormCheckBox } from "./inputs/checkbox";
 import { FormCurrencyInput, type FormCurrencyInputProps } from "./inputs/currency";
 
 
@@ -19,6 +21,7 @@ interface AppFormInputsProps<T extends FieldValues> {
     Input: (props: Omit<FormInputProps<T>, "control">) => React.ReactNode;
     DateInput: (props: Omit<DateInputProps<T>, "control">) => React.ReactNode;
     Switch: (props: Omit<SwitchProps<T>, "control">) => React.ReactNode;
+    CheckBox: (props: Omit<CheckBoxProps<T>, "control">) => ReactNode
     Select: (props: BoundSelectProps<T>) => React.ReactNode;
     CurrencyInput: (props: Omit<FormCurrencyInputProps<T>, "control" | "value">) => React.ReactNode;
 }
@@ -54,6 +57,12 @@ export const AppForm = <T extends FieldValues>({ control, render }: AppFormProps
                         {...props}
                     />
                 ),
+                CheckBox: (props) => (
+                    <FormCheckBox
+                        control={control}
+                        {...props}
+                    />
+                )
             })}
         </>
     );

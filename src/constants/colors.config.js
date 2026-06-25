@@ -1,7 +1,9 @@
 module.exports = {
 	appColors: {
-		primary: "#E0611D",
-
+		primary: "#2F54EB",
+		feedback: {
+			danger:'#D13342'
+		},
 		neutral: {
 			light: "#f5f5f5",
 			medium: "#9e9e9e",

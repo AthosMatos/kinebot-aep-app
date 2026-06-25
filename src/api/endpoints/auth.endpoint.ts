@@ -1,4 +1,7 @@
-import { api } from "../axios.config";
+import { loginValues, mockToken } from "@/mock/login.mock";
+import { sleep } from "@/utils/sleep.utils";
+
+const ProfilePic = require("../../assets/profile_pic.jpg")
 
 type LoginCredentials = {
 	email: string;
@@ -19,7 +22,20 @@ export type LoginResponse = {
 
 export const authService = {
 	async login(credentials: LoginCredentials) {
-		const response = await api.post<LoginResponse>("/login", credentials);
-		return response.data;
+		await sleep(400)
+		if (credentials.email === loginValues.email && credentials.password === loginValues.password) {
+			return {
+				token: mockToken,
+				user: {
+					email: loginValues.email,
+					username: 'KineTeste',
+					id: '123',
+					profile_picture: ProfilePic
+				}
+			} as LoginResponse
+		}
+		throw 'Credenciais erradas'
+		/* const response = await api.post<LoginResponse>("/login", credentials);
+		return response.data; */
 	}
 };
