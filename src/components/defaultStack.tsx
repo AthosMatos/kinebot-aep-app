@@ -1,0 +1,16 @@
+import { appColors } from "@/constants/colors";
+import { Stack } from "expo-router";
+
+export const DefaultStack = () => {
+    return (
+        <Stack
+            screenOptions={{
+                animation: "ios_from_right",
+                headerShown: false,
+                contentStyle: {
+                    backgroundColor: appColors.transparent,
+                },
+            }}
+        />
+    );
+};
