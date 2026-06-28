@@ -85,6 +85,19 @@ pnpm lint        # expo lint
 pnpm typecheck   # tsc --noEmit
 ```
 
+### Gerar APK de produção (para testar em dispositivo real)
+
+Para facilitar o teste por outras pessoas, há scripts que geram um **APK release** — assim dá para instalar direto num aparelho Android e avaliar a versão de produção, com **mais performance** do que rodar via Expo Go/dev.
+
+```bash
+pnpm set-version       # seletor interativo de versão (patch/minor/major) — opcional
+pnpm gen-apk-release   # bump de versão + build release (gradlew assembleRelease) + cópia do APK
+```
+
+O `gen-apk-release` executa o fluxo completo e, ao final, copia o `.apk` para `apk/kinebot-aep-<versão>.apk` na raiz do projeto (via `copy-apk`). É só compartilhar esse arquivo com quem for testar.
+
+> Requer o ambiente Android nativo configurado (Android SDK / `ANDROID_HOME`), já que faz um build local com Gradle. O `set-version` também sincroniza a versão entre `package.json`, `app.json` e `android/app/build.gradle`.
+
 ---
 
 ## Arquitetura e organização de pastas

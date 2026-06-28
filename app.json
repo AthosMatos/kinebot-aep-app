@@ -9,7 +9,8 @@
     "userInterfaceStyle": "automatic",
     "ios": {
       "icon": "./assets/expo.icon",
-      "bundleIdentifier": "com.athosladies.kinebotAEP"
+      "bundleIdentifier": "com.athosladies.kinebotAEP",
+			"buildNumber": "2"
     },
     "android": {
       "adaptiveIcon": {
@@ -19,7 +20,8 @@
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
       "predictiveBackGestureEnabled": false,
-      "package": "com.athosladies.kinebotAEP"
+      "package": "com.athosladies.kinebotAEP",
+			"versionCode": 2
     },
     "web": {
       "output": "static",
