@@ -40,7 +40,7 @@ export function LoginLayout(props: SvgProps) {
             fill="none"
             {...props}
             entering={SlideInLeft.springify().delay(400)}
-            style={{ position: 'absolute', bottom: 0 }}
+            style={{ position: 'absolute', bottom: 0, zIndex: 1 }}
         >
             <AnimatedCircle
                 cx={11.9514}

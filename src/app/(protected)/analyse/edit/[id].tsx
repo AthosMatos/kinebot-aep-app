@@ -1,5 +1,6 @@
 import { Analyse } from "@/api/endpoints/analyses.endpoints";
 import { AnalysesInput, analysesSchema } from "@/api/schemas/analyses.schema";
+import { invalidadeAnalyseById } from "@/atoms/api/anayles/invalidate";
 import { putAnalysisAtom } from "@/atoms/api/anayles/mutations";
 import { getAnalysesbyIdQueryAtom } from "@/atoms/api/anayles/query";
 import { AppText } from "@/components/app-defaults/app-text";
@@ -32,6 +33,7 @@ function EditContent({ data }: { data: Analyse }) {
                 id: data.id,
                 body: { ...values, analysisDate: values.analysisDate?.toISOString() },
             });
+            invalidadeAnalyseById(data.id)
             router.back();
         } catch {
             // toast shown by service

@@ -3,10 +3,12 @@ import { useAuth } from "@/auth/auth.provider";
 import { AppButton } from "@/components/app-defaults/app-button";
 import { AppText } from "@/components/app-defaults/app-text";
 import { appColors } from "@/constants/colors";
-import { useAtomValue } from "jotai";
-import { ReactNode } from "react";
 import { Image } from "expo-image";
+import { useAtomValue, useSetAtom } from "jotai";
+import { PencilLine } from "lucide-react-native";
 import { ScrollView, View } from "react-native";
+import { editProfileModalVisibleAtom } from "./atoms";
+import { EditProfileModal } from "./modals/editProfileModal";
 
 const InfoRow = ({ label, value }: { label: string; value?: string }) => (
 	<View className="flex-row justify-between items-center px-4 py-4 border-b border-stone-100">
@@ -18,6 +20,7 @@ const InfoRow = ({ label, value }: { label: string; value?: string }) => (
 export default function UserScreen() {
 	const user = useAtomValue(userAtom);
 	const { logout: { signOut, isPending } } = useAuth();
+	const setEditVisible = useSetAtom(editProfileModalVisibleAtom);
 
 	const initials = user?.username?.charAt(0).toUpperCase() ?? "?";
 
@@ -29,7 +32,7 @@ export default function UserScreen() {
 		>
 			<AppText className="text-black font-bold text-2xl">Perfil</AppText>
 
-			<View className="bg-white rounded-2xl p-6 items-center gap-4" style={{ elevation: 1 }}>
+			<View className="bg-white rounded-2xl p-6 items-center gap-4 border border-stone-200">
 				{user?.profile_picture ? (
 					<Image
 						source={user.profile_picture}
@@ -49,15 +52,25 @@ export default function UserScreen() {
 				</View>
 			</View>
 
-			<View className="bg-white rounded-2xl overflow-hidden" style={{ elevation: 1 }}>
+			<View className="bg-white rounded-2xl overflow-hidden border border-stone-200" >
 				<InfoRow label="Nome de usuário" value={user?.username} />
 				<InfoRow label="E-mail" value={user?.email} />
 				<InfoRow label="ID" value={user?.id} />
 			</View>
 
+			<AppButton
+				variant="outline"
+				customIcon={<PencilLine size={18} color={appColors.primary_dark} />}
+				onPress={() => setEditVisible(true)}
+			>
+				Editar perfil
+			</AppButton>
+
 			<AppButton variant="delete" isLoading={isPending} onPress={signOut}>
 				Sair da conta
 			</AppButton>
+
+			<EditProfileModal />
 		</ScrollView>
 	);
 }

@@ -15,9 +15,13 @@ export const AnalysesForm = ({ submitLabel, isPending }: Props) => {
     const { control, isValid, submit } = useAppFormContext<AnalysesInput>();
 
     return (
-        <View className="gap-6 px-4 flex-1">
+        <View className="gap-6 pb-2 px-4 flex-1">
             <AppText className="text-black font-bold text-xl mt-6">Informações da análise</AppText>
-            <KeyboardAwareScrollView showsVerticalScrollIndicator={false} bottomOffset={24}>
+            <KeyboardAwareScrollView
+                contentContainerClassName="py-4"
+                fadingEdgeLength={20}
+                showsVerticalScrollIndicator={false}
+                bottomOffset={24}>
                 <AppForm
                     control={control}
                     render={({ Input, DateInput }) => (

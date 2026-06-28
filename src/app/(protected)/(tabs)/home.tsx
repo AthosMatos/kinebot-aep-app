@@ -29,7 +29,7 @@ export default function Home() {
 					<AppText className="text-black font-bold text-2xl">{user?.username ?? "Usuário"}</AppText>
 				</View>
 
-				<View className="bg-white rounded-2xl p-6 gap-2" style={{ elevation: 2 }}>
+				<View className="bg-white rounded-2xl p-6 gap-2 border border-stone-200" >
 					<View className="flex-row items-center gap-2">
 						<FolderOpen color={appColors.primary} size={20} />
 						<AppText className="text-stone-500 text-sm">Total de análises</AppText>

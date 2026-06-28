@@ -10,11 +10,14 @@ export const AnalyseList = () => {
     return (
         <LazyLoad loading={isLoading}>
             <FlatList
+                fadingEdgeLength={20}
+
+
                 showsVerticalScrollIndicator={false}
                 data={analyses}
                 keyExtractor={(item) => item.id}
                 renderItem={({ item: analyse }) => <AnalyseCard {...analyse} />}
-                contentContainerClassName="gap-4 pb-4"
+                contentContainerClassName="gap-4 py-4"
                 className="w-full px-4"
                 onEndReached={() => {
                     if (hasNextPage && !isFetchingNextPage) fetchNextPage();

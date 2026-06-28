@@ -2,7 +2,6 @@ import { analysesService, GetAllAnalysesParams } from "@/api/endpoints/analyses.
 import { atomWithInfiniteQuery, atomWithQuery } from "jotai-tanstack-query";
 
 const getAllKey = 'Analyses'
-
 export const getAnalysesQueryAtom = (params?: GetAllAnalysesParams) =>
     atomWithQuery(() => {
         return {
@@ -36,3 +35,6 @@ export const getAnalysesbyIdQueryAtom = (id: string) =>
             staleTime: 30000, // 30 seconds
         }
     });
+
+
+

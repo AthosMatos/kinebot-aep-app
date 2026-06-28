@@ -14,7 +14,7 @@ function AnalyseContent() {
         <View className="items-center w-full px-4 gap-8 flex-1 pt-8">
             <AppText className="text-black font-bold text-xl">{data?.title}</AppText>
             <View className="gap-4">
-                <View className="bg-white w-full elevation-sm p-6 rounded-xl gap-8">
+                <View className="bg-white w-full border border-stone-200 p-6 rounded-xl gap-8">
                     <AnalyseInfo />
                     <AnylsePieChart />
                 </View>

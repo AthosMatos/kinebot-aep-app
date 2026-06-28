@@ -38,28 +38,29 @@ const FilterModalContent = () => {
 				</View>
 			}
 		>
-			<KeyboardAwareScrollView showsVerticalScrollIndicator={false} contentContainerClassName="pb-4" bottomOffset={24}>
-				<View className="gap-6">
-					<View className="gap-3">
-						<SectionLabel>Busca</SectionLabel>
-						<AppForm
-							control={control}
-							render={({ Input }) => (
-								<Input
-									name="q"
-									label="Busca geral"
-									placeholder="Buscar em todos os campos..."
-									autoCorrect={false}
-									autoCapitalize="none"
-								/>
-							)}
-						/>
-					</View>
-
-					<SortChips />
-
-					<FieldFilters />
+			<KeyboardAwareScrollView
+				showsVerticalScrollIndicator={false}
+				contentContainerClassName="gap-6"
+				bottomOffset={24}>
+				<View className="gap-3">
+					<SectionLabel>Busca</SectionLabel>
+					<AppForm
+						control={control}
+						render={({ Input }) => (
+							<Input
+								name="q"
+								label="Busca geral"
+								placeholder="Buscar em todos os campos..."
+								autoCorrect={false}
+								autoCapitalize="none"
+							/>
+						)}
+					/>
 				</View>
+
+				<SortChips />
+
+				<FieldFilters />
 			</KeyboardAwareScrollView>
 		</AppModal>
 	);

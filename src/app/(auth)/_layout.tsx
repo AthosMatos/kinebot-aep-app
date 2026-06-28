@@ -1,12 +1,18 @@
 import { LoginLayout } from "@/components/login/login-layout";
+import { Image } from "expo-image";
 import { Stack } from "expo-router";
-import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { View } from "react-native";
+import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
+
+const LogoHorizontal = require("../../assets/logo_horizontal.png")
 
 export default function ScreenLayout() {
+	const { top } = useSafeAreaInsets()
 	return (
-		<KeyboardAwareScrollView contentContainerClassName="flex-1">
+		<View className="flex-1">
 			<LoginLayout />
+			<Image style={{ width: 60, height: 254, top: top, right: 32, position: 'absolute' }} source={LogoHorizontal} />
+
 
 			<SafeAreaView className="flex-1">
 				<Stack
@@ -17,6 +23,8 @@ export default function ScreenLayout() {
 					}}
 				/>
 			</SafeAreaView>
-		</KeyboardAwareScrollView>
+
+
+		</View>
 	);
 }

@@ -1,9 +1,12 @@
-import { authService } from "@/api/endpoints/auth.endpoint";
+import { authService, LoginCredentials, User } from "@/api/endpoints/auth.endpoint";
 import { authTokenAtom, TOKEN_KEY } from "@/atoms/auth/token";
+import { loginValuesAtom } from "@/mock/atoms/login.mock.atoms";
+import { mockUserAtom } from "@/mock/atoms/user.mock.atoms";
 import { StorageKeys } from "@/storage-keys";
 import { secureStorage } from "@/utils/jotai-storage.utils";
 import { atom } from "jotai";
 import { atomWithMutation, queryClientAtom } from "jotai-tanstack-query";
+import { unwrap } from "jotai/utils";
 import { userAtom } from "../../auth/user";
 
 
@@ -48,13 +51,39 @@ export const logoutAtom = atom(null, async (get, set) => {
 export const loginAtom = atomWithMutation(
     (get) => ({
         mutationKey: ["sessions"],
-        mutationFn: authService.login,
+        mutationFn: (credentials: LoginCredentials) => {
+            const loginValues = get(unwrap(loginValuesAtom))
+            const storedUser = get(unwrap(mockUserAtom))
+            return authService.login(credentials, loginValues, storedUser)
+        },
         onSuccess: async () => {
             const queryClient = get(queryClientAtom);
             await queryClient.invalidateQueries();
         },
         onError: async (error) => {
             console.error("Login failed:", error);
+        },
+    }),
+    (get) => get(queryClientAtom)
+);
+
+export const forgotPasswordAtom = atomWithMutation(
+    () => ({
+        mutationKey: ["forgotPassword"],
+        mutationFn: (credentials: LoginCredentials) => authService.forgotPassword(credentials),
+        onError: async (error) => {
+            console.error("Forgot password failed:", error);
+        },
+    }),
+    (get) => get(queryClientAtom)
+);
+
+export const updateUserAtom = atomWithMutation(
+    () => ({
+        mutationKey: ["updateUser"],
+        mutationFn: (user: User) => authService.updateUser(user),
+        onError: async (error) => {
+            console.error("Update user failed:", error);
         },
     }),
     (get) => get(queryClientAtom)

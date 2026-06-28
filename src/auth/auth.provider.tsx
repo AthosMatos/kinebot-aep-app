@@ -1,4 +1,5 @@
-import { loginInput } from "@/api/schemas/auth.schema";
+import { forgotPasswordInput, loginInput } from "@/api/schemas/auth.schema";
+import { loginValuesAtom } from "@/mock/atoms/login.mock.atoms";
 import { useNetInfo } from "@react-native-community/netinfo";
 import * as SplashScreen from "expo-splash-screen";
 import { useAtomValue, useSetAtom } from "jotai";
@@ -13,7 +14,7 @@ import {
 	useState
 } from "react";
 import { setLogoutCallback } from "../api/axios.config";
-import { loginAtom, logoutAtom } from "../atoms/api/auth/mutations";
+import { forgotPasswordAtom, loginAtom, logoutAtom } from "../atoms/api/auth/mutations";
 import { useAuthStates } from "./use-auth-states";
 
 interface AuthContextProps {
@@ -26,6 +27,11 @@ interface AuthContextProps {
 		isPending: boolean;
 		error: unknown;
 		signOut: () => Promise<void>;
+	};
+	forgotPassword: {
+		isPending: boolean;
+		error: unknown;
+		resetPassword: (formValues: forgotPasswordInput) => Promise<void>;
 	};
 	isLoggedIn: boolean;
 	isConnected: boolean;
@@ -51,12 +57,18 @@ export function AuthProvider({ children }: PropsWithChildren) {
 	const [shouldSaveUser, setShouldSaveUser] = useState(false)
 
 	const logout = useSetAtom(logoutAtom);
+	const setLoginValues = useSetAtom(loginValuesAtom);
 
 	const {
 		mutateAsync: loginAsync,
 		isPending: loginIsPending,
 		error: loginError,
 	} = useAtomValue(loginAtom);
+	const {
+		mutateAsync: forgotPasswordAsync,
+		isPending: forgotPasswordIsPending,
+		error: forgotPasswordError,
+	} = useAtomValue(forgotPasswordAtom);
 	const queryClient = useAtomValue(queryClientAtom);
 
 	const { saveAuthStates, authToken } = useAuthStates();
@@ -67,15 +79,21 @@ export function AuthProvider({ children }: PropsWithChildren) {
 
 	const signIn = useCallback(
 		async (formValues: loginInput) => {
+
 			try {
 				if (queryClient) {
 					queryClient.removeQueries();
 					queryClient.clear();
 				}
-				const { token, user } = await loginAsync({
+				const response = await loginAsync({
 					email: formValues.email,
 					password: formValues.password,
 				});
+
+				// Sem credenciais armazenadas (mock): nada a autenticar.
+				if (!response) return;
+
+				const { token, user } = response;
 
 				console.log("Login bem-sucedido:", token, user);
 
@@ -88,6 +106,18 @@ export function AuthProvider({ children }: PropsWithChildren) {
 			}
 		},
 		[queryClient, shouldSaveUser]
+	);
+
+	const resetPassword = useCallback(
+		async (formValues: forgotPasswordInput) => {
+			const credentials = await forgotPasswordAsync({
+				email: formValues.email,
+				password: formValues.password,
+			});
+			// Mock: persist the new credentials so the next login uses them.
+			setLoginValues(credentials ?? { email: formValues.email, password: formValues.password });
+		},
+		[]
 	);
 
 	const signOut = useCallback(async () => {
@@ -145,6 +175,11 @@ export function AuthProvider({ children }: PropsWithChildren) {
 					isPending: false,
 					error: null,
 					signOut,
+				},
+				forgotPassword: {
+					isPending: forgotPasswordIsPending,
+					error: forgotPasswordError,
+					resetPassword,
 				},
 				isLoggedIn,
 				isConnected,

@@ -24,7 +24,7 @@ export const AnylsePieChart = () => {
         <AppText className="text-black font-bold text-xl">Resultado da análise</AppText>
         <View className="flex-row items-center gap-5">
             {!isLoading ? analysePieSeries.length ? <PieChart padAngle={0.02} widthAndHeight={180} series={analysePieSeries} /> : <View className="w-[180px] bg-stone-200 aspect-square flex-row justify-center rounded-full items-center">
-                <AppText className="font-bold">
+                <AppText className="text-stone-500">
                     Sem gráfico de analise
                 </AppText>
             </View> : <AppLoad size={180} />}
