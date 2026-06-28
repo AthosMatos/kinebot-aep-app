@@ -11,7 +11,7 @@ export default function ScreenLayout() {
 		}}
 	>
 		<Tabs.Screen name="home" />
-		<Tabs.Screen name="reports" />
+		<Tabs.Screen name="analyses" />
 		<Tabs.Screen name="config" />
 		<Tabs.Screen name="user" />
 	</Tabs>

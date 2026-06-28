@@ -1,9 +1,9 @@
+import { appColors } from "@/constants/colors";
 import { useFocusEffect } from "expo-router";
-import { useCallback, useMemo, useState } from "react";
+import { PropsWithChildren, useCallback, useMemo, useState } from "react";
 import { ActivityIndicator, View } from "react-native";
 
-interface LazyLoadProps {
-	children: React.ReactNode;
+interface LazyLoadProps extends PropsWithChildren {
 	placeholder?: React.ReactNode;
 	debugForceLoad?: boolean;
 	loading?: boolean;
@@ -30,7 +30,7 @@ export const LazyLoad = ({ children, placeholder, debugForceLoad, loading }: Laz
 		<>
 			{showLoading ? (placeholder ??
 				<View className="flex-1 items-center justify-center">
-					<ActivityIndicator size={44} />
+					<ActivityIndicator size={44} color={appColors.primary} />
 				</View>
 			) : (
 				children

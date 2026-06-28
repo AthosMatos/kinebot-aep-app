@@ -12,7 +12,7 @@ export default function ScreenLayout() {
 				<Stack
 					screenOptions={{
 						headerShown: false,
-						animation: "ios_from_right",
+						animation: "slide_from_right",
 						contentStyle: { backgroundColor: "transparent" },
 					}}
 				/>

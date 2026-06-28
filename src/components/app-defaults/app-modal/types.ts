@@ -6,7 +6,7 @@ export type AppModalProps = {
     onClose: () => void;
     title?: string;
     subtitle?: string;
-    children: ReactNode;
+    children?: ReactNode;
     footer?: ReactNode;
     contentStyle?: StyleProp<ViewStyle>;
     style?: StyleProp<ViewStyle>;

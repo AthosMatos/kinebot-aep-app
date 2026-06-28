@@ -1,10 +1,12 @@
-import { createContext, useContext } from "react";
+import { createContext, PropsWithChildren, useContext } from "react";
 import {
     type Control,
     type DefaultValues,
     type FieldValues,
     type Resolver,
     type UseFormGetValues,
+    type UseFormReset,
+    type UseFormSetValue,
     useForm
 } from "react-hook-form";
 
@@ -13,13 +15,14 @@ export interface FormContextValue<T extends FieldValues> {
     isValid: boolean;
     submit: () => void;
     getValues: UseFormGetValues<T>;
+    setValue: UseFormSetValue<T>;
+    reset: UseFormReset<T>;
     values: T;
 }
 
 export const FormContext = createContext<FormContextValue<any> | undefined>(undefined);
 
-interface FormProviderProps<T extends FieldValues> {
-    children: React.ReactNode;
+interface FormProviderProps<T extends FieldValues> extends PropsWithChildren {
     onSubmit: (data: T) => void;
     resolver: Resolver<T>;
     defaultValues?: DefaultValues<T>;
@@ -36,6 +39,8 @@ export const AppFormProvider = <T extends FieldValues>({
         control,
         formState: { isValid },
         getValues,
+        setValue,
+        reset,
         watch,
     } = useForm<T>({ resolver, mode: "onChange", defaultValues });
 
@@ -48,6 +53,8 @@ export const AppFormProvider = <T extends FieldValues>({
                 isValid,
                 submit: handleSubmit(onSubmit),
                 getValues,
+                setValue,
+                reset,
                 values,
             }}
         >

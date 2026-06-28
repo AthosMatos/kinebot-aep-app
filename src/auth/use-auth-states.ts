@@ -7,8 +7,8 @@ export const useAuthStates = () => {
 	const [authToken, setAuthToken] = useAtom(authTokenAtom);
 	const setUser = useSetAtom(userAtom);
 
-	const saveAuthStates = ({ token, user }: { token: string; user: User }) => {
-		setAuthToken(token);
+	const saveAuthStates = ({ token, user }: { token?: string; user: User }) => {
+		token && setAuthToken(token);
 		setUser(user);
 	};
 

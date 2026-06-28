@@ -1,5 +1,7 @@
+import { inPrimaryPageAtom } from "@/atoms/pages";
 import { usePathname } from "expo-router";
-import { useMemo } from "react";
+import { useSetAtom } from "jotai";
+import { useEffect, useMemo } from "react";
 import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Tab } from "./components/tab";
@@ -7,10 +9,15 @@ import { tabs } from "./tabs";
 
 export default function BottomTabs() {
 	const pathname = usePathname();
-	const [selectedTab] = useMemo(() => {
-		const matchingTab = tabs?.find((tab) => pathname.includes(tab.path.toString()));
-		return [matchingTab ? matchingTab.path : null];
-	}, [pathname]);
+	const setInPrimaryPage = useSetAtom(inPrimaryPageAtom)
+
+	const matchingTab = useMemo(() => tabs?.find((tab) => pathname.includes(tab.path.toString())), [pathname])
+	const selectedTab = matchingTab ? matchingTab.path : null
+
+	useEffect(() => {
+		setInPrimaryPage(!!matchingTab)
+	}, [matchingTab]);
+
 	const { bottom } = useSafeAreaInsets();
 
 	return (

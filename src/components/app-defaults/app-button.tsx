@@ -19,22 +19,22 @@ const variantStyles = {
 	},
 	outline: {
 		backgroundColor: "white",
-		textColor: appColors.primary,
-		iconColor: appColors.primary,
-		borderColor: appColors.neutral.medium,
+		textColor: appColors.primary_dark,
+		iconColor: appColors.primary_dark,
+		borderColor: appColors.neutral.light_medium,
 		borderWidth: 1,
 	},
 	disabled: {
 		backgroundColor: appColors.neutral.light,
 		textColor: appColors.neutral.medium,
 		iconColor: appColors.neutral.medium,
-		borderColor: appColors.neutral.light,
+		borderColor: appColors.neutral.light_medium,
 		borderWidth: 1,
 	},
 	transparent: {
 		backgroundColor: "transparent",
-		textColor: appColors.primary,
-		iconColor: appColors.primary,
+		textColor: appColors.primary_dark,
+		iconColor: appColors.primary_dark,
 		borderColor: "transparent",
 		borderWidth: 0,
 	},
@@ -42,7 +42,7 @@ const variantStyles = {
 		backgroundColor: "white",
 		textColor: appColors.feedback.danger,
 		iconColor: appColors.feedback.danger,
-		borderColor: appColors.neutral.medium,
+		borderColor: appColors.neutral.light_medium,
 		borderWidth: 1,
 	}
 };
@@ -94,11 +94,11 @@ export const AppButton = ({
 			{...props}
 			className={[
 				props.className,
-				"justify-center items-center h-[50px]",
+				"justify-center items-center",
 				isIconOnly
 					? "w-[50px] rounded-full p-3"
-					: `rounded-lg px-4`,
-				small ? "h-10 px-2" : "",
+					: `rounded-lg`,
+				small ? "h-10 px-2" : " h-[50px] px-4",
 			]
 				.join(" ")
 				.trim()}

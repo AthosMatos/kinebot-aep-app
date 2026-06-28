@@ -1,6 +1,5 @@
 import { jotaiStore } from "@/atoms/store";
 import { AppGradientView } from "@/components/app-defaults/app-gradient-view";
-import { modals } from "@/modals/modals";
 import { QueryProvider } from "@/query-provider";
 import "@root/global.css";
 import { Stack } from "expo-router";
@@ -30,7 +29,7 @@ function RootNavigator() {
       <Stack
         screenOptions={{
           headerShown: false,
-          animation: "ios_from_right",
+          animation: "slide_from_right",
           contentStyle: {
             backgroundColor: "transparent",
           },
@@ -55,7 +54,7 @@ function RootLayout() {
           <KeyboardProvider>
             <RootNavigator />
             <ToastManager animationStyle={'slide'} config={toastConfig} position="top" useModal={false} showProgressBar showCloseIcon />
-            {modals.map((ModalComponent) => ModalComponent)}
+            {/* {modals.map((ModalComponent) => ModalComponent)} */}
           </KeyboardProvider>
         </AuthProvider>
       </QueryProvider>

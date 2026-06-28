@@ -5,9 +5,9 @@ export const InputContainer = styled.View`
     gap: 4px;    
 `;
 export const InputLabel = styled.Text`
-    font-size: 15px;
+    font-size: 14px;
     color: #000000;
-    font-weight: 500;
+    font-weight: 400;
 `;
 export const InputError = styled.Text`
     font-size: 12px;
@@ -15,10 +15,8 @@ export const InputError = styled.Text`
 `;
 
 export const TextInputContainer = styled.View`
-    outline-width: 1px;
-    outline-color: #b1b1b1;
-    outline-style: solid;
-    border-radius: 4px;
+    border: 1px solid #e2e2e2;
+    border-radius: 8px;
     height: 40px;
     padding-horizontal: 8px;
     justify-content: space-between;
@@ -40,7 +38,8 @@ export const StyledInput = styled.TextInput.attrs({
 
 export const InputText = styled.Text<{ isPlaceholder?: boolean }>`    
     font-size: 16px;
-    color: ${({ isPlaceholder }) => (isPlaceholder ? "#a5a5a5" : "#ffffff")};    
+    color: ${({ isPlaceholder }) => (isPlaceholder ? "#a5a5a5" : "#000000")};
+    flex: 1;
 `;
 
 export const StyledCurrencyInput = styled(CurrencyInput).attrs({

@@ -13,7 +13,7 @@ import {
 	useState
 } from "react";
 import { setLogoutCallback } from "../api/axios.config";
-import { loginAtom, logoutAtom } from "../atoms/auth/mutations";
+import { loginAtom, logoutAtom } from "../atoms/api/auth/mutations";
 import { useAuthStates } from "./use-auth-states";
 
 interface AuthContextProps {
@@ -80,7 +80,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
 				console.log("Login bem-sucedido:", token, user);
 
 				// Salvar estados de autenticação com jotai storage
-				if (shouldSaveUser) saveAuthStates({ token, user });
+				saveAuthStates({ token: shouldSaveUser ? token : undefined, user });
 				setIsLoggedIn(true)
 				//router.dismissAll();
 			} catch (error) {

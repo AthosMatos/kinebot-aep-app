@@ -9,7 +9,7 @@ export const tabs: TabType[] = [
 		icon: ({ color }) => <Home size={iconSize} color={color} />,
 	},
 	{
-		path: "/reports",
+		path: "/analyses",
 		icon: ({ color }) => <FolderOpen size={iconSize} color={color} />,
 	},
 	{

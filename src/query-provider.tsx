@@ -1,19 +1,16 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { queryClientAtom } from "jotai-tanstack-query";
 import { useHydrateAtoms } from "jotai/react/utils";
-import type { ReactNode } from "react";
+import type { PropsWithChildren } from "react";
 
-type QueryProviderProps = {
-	children: ReactNode;
-};
+
 
 function HydrateAtoms({
 	children,
 	queryClient,
-}: {
-	children: ReactNode;
+}: PropsWithChildren<{
 	queryClient: QueryClient;
-}) {
+}>) {
 	useHydrateAtoms(new Map([[queryClientAtom, queryClient]]));
 	return <>{children}</>;
 }
@@ -31,7 +28,7 @@ export const queryClient = new QueryClient({
 	},
 });
 
-export function QueryProvider({ children }: QueryProviderProps) {
+export function QueryProvider({ children }: PropsWithChildren) {
 	return (
 		<QueryClientProvider client={queryClient}>
 			<HydrateAtoms queryClient={queryClient}>{children}</HydrateAtoms>

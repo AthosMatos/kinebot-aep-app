@@ -62,7 +62,7 @@ export const AppModalContent = (props: AppModalProps) => {
 						<ChevronLeft opacity={0} size={28} color={appColors.neutral.dark} onPress={onClose} />
 						{title && (
 							<AppText
-								className="shrink text-center text-base font-bold"
+								className="shrink text-center text-lg font-bold"
 								style={{ color: appColors.neutral.dark }}
 							>
 								{title}
@@ -116,7 +116,7 @@ export const AppModalContent = (props: AppModalProps) => {
 			)}
 
 			{footer && (
-				<View className="pt-2.5 px-4 gap-2" style={footerStyle}>
+				<View className="pb-3 px-4 gap-2" style={footerStyle}>
 					{footer}
 				</View>
 			)}

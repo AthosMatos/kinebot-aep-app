@@ -1,6 +1,8 @@
+import { formatToBrazilianDate } from "@/utils/date.utils";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { useState } from "react";
 import { type Control, Controller, type FieldValues, type Path } from "react-hook-form";
+import { TouchableOpacity } from "react-native";
 import { InputContainer, InputError, InputLabel, InputText, TextInputContainer } from "./styled";
 
 
@@ -24,13 +26,15 @@ export const FormDateInput = <T extends FieldValues>({ label, control, name, pla
 					<InputContainer>
 						{label && <InputLabel>{label}</InputLabel>}
 						{error && <InputError>{error.message}</InputError>}
-						<TextInputContainer>
-							<InputText onPress={() => setShow(true)} isPlaceholder={!field.value}>
-								{field.value
-									? new Date(field.value).toLocaleDateString()
-									: placeholder || "Select a date"}
-							</InputText>
-						</TextInputContainer>
+						<TouchableOpacity activeOpacity={0.8} onPress={() => setShow(true)}>
+							<TextInputContainer>
+								<InputText isPlaceholder={!field.value}>
+									{field.value
+										? formatToBrazilianDate(new Date(field.value).toISOString())
+										: placeholder || "Select a date"}
+								</InputText>
+							</TextInputContainer>
+						</TouchableOpacity>
 
 					</InputContainer>
 					{show && (

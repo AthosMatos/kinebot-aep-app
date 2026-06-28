@@ -4,7 +4,7 @@ import { StorageKeys } from "@/storage-keys";
 import { secureStorage } from "@/utils/jotai-storage.utils";
 import { atom } from "jotai";
 import { atomWithMutation, queryClientAtom } from "jotai-tanstack-query";
-import { userAtom } from "./user";
+import { userAtom } from "../../auth/user";
 
 
 // Persisted SecureStore keys that hold user-scoped data and must be wiped on logout.

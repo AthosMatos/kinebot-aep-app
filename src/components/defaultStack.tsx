@@ -5,7 +5,7 @@ export const DefaultStack = () => {
     return (
         <Stack
             screenOptions={{
-                animation: "ios_from_right",
+                animation: "slide_from_right",
                 headerShown: false,
                 contentStyle: {
                     backgroundColor: appColors.transparent,
