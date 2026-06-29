@@ -30,10 +30,10 @@ export const FormInput = <T extends FieldValues>({ label, icon, control, name, .
 						{error && <InputError>{error.message}</InputError>}
 					</View>
 					<TextInputContainer>
-						{LeftIcon ? <LeftIcon size={24} color={appColors.neutral.medium} /> : null}
+						{LeftIcon ? <LeftIcon size={20} color={appColors.neutral.medium} /> : null}
 						<StyledInput {...rest} {...field} onChangeText={field.onChange} />
-						{RightIcon ? <TouchableOpacity onPress={icon.onRightIconPress} disabled={!icon.onRightIconPress}>
-							<RightIcon size={24} color={appColors.neutral.medium} />
+						{RightIcon ? <TouchableOpacity hitSlop={6} onPress={icon.onRightIconPress} disabled={!icon.onRightIconPress}>
+							<RightIcon size={20} color={appColors.neutral.medium} />
 						</TouchableOpacity> : null}
 					</TextInputContainer>
 				</InputContainer>

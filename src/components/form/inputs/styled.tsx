@@ -19,7 +19,6 @@ export const TextInputContainer = styled.View`
     border-radius: 8px;
     height: 40px;
     padding-horizontal: 8px;
-    justify-content: space-between;
     align-items: center;
     flex-direction: row;
     background-color: white;
@@ -27,7 +26,7 @@ export const TextInputContainer = styled.View`
 `;
 
 export const StyledInput = styled.TextInput.attrs({
-    placeholderClassName: "text-gray-200",
+    placeholderTextColor: '#bbbbbb',
     style: { textAlignVertical: "center", includeFontPadding: false },
 })`
     font-size: 16px;

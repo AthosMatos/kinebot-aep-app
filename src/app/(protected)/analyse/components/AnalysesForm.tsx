@@ -8,8 +8,8 @@ import { useSetAtom } from "jotai";
 import { ChevronRight } from "lucide-react-native";
 import { TouchableOpacity, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
-import { resultModalVisibleAtom } from "./resultModal/atoms";
 import { ResultModal } from "./resultModal";
+import { resultModalVisibleAtom } from "./resultModal/atoms";
 
 interface Props {
     submitLabel: string;
@@ -34,7 +34,7 @@ export const AnalysesForm = ({ submitLabel, isPending }: Props) => {
                         control={control}
                         render={({ Input, DateInput }) => (
                             <View className="gap-4">
-                                <Input name="title" label="Título" placeholder="Ex: Análise de ergonomia" />
+                                <Input name="title" label="Título*" placeholder="Ex: Análise de ergonomia" />
                                 <Input name="company" label="Empresa" placeholder="Nome da empresa" />
                                 <Input name="industrialPlant" label="Planta Industrial" placeholder="Ex: Planta 1" />
                                 <Input name="sector" label="Setor" placeholder="Ex: Montagem" />

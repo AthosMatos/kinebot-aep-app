@@ -34,6 +34,7 @@ export function LoginLayout(props: SvgProps) {
 
     return (
         <AnimatedSvg
+            pointerEvents={'none'}
             width={211}
             height={886}
             viewBox="0 0 211 886"

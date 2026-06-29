@@ -2,7 +2,7 @@
   "expo": {
     "name": "kinebotAEP",
     "slug": "kinebotAEP",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "kinebotAEP",
@@ -10,7 +10,7 @@
     "ios": {
       "icon": "./assets/expo.icon",
       "bundleIdentifier": "com.athosladies.kinebotAEP",
-			"buildNumber": "3"
+			"buildNumber": "1"
     },
     "android": {
       "adaptiveIcon": {
@@ -21,7 +21,7 @@
       },
       "predictiveBackGestureEnabled": false,
       "package": "com.athosladies.kinebotAEP",
-			"versionCode": 3
+			"versionCode": 1
     },
     "web": {
       "output": "static",
