@@ -173,6 +173,15 @@ src/
 
 **Criar / Editar Análise** — formulário com os campos exibidos nos Detalhes (Empresa, Planta industrial, Setor, Posto de trabalho, Atividade, Avaliador). A data de análise é automática. O **resultado de risco faz parte do objeto enviado**, seguindo a estrutura da Referência da API. Persiste via `POST` (criar) / `PUT`-`PATCH` (editar) e, ao salvar, volta à lista atualizada. **O mesmo formulário é reaproveitado** na edição, pré-preenchido.
 
+**Editar o resultado / gráfico de pizza (criar e editar)** — o formulário tem uma seção **"Resultado da análise"** que abre um **modal dedicado para montar o `result`** (o array que gera o gráfico de pizza). Dentro dele:
+
+- **Preview do gráfico ao vivo** — o pie chart é renderizado e atualizado a cada alteração, mostrando exatamente como ficará no Detalhe.
+- **Adicionar e definir valores** — os níveis de risco (Aceitável, Moderado, Elevado, Muito elevado, Grave e iminente) aparecem como chips; ao adicionar um nível ele entra na lista já sugerindo o **percentual restante** (100 − total), e cada item permite ajustar o percentual ou remover.
+- **Total acompanhado** — exibe o somatório dos percentuais com cor indicativa (verde quando fecha 100%), sem bloquear o salvamento (o gráfico é proporcional).
+- **Edição transacional** — o modal trabalha sobre um *rascunho* que só é commitado no formulário ao **Confirmar** (Cancelar descarta). Ao reabrir, o rascunho é re-sincronizado e os resultados existentes são **normalizados** para os níveis canônicos (por chave, rótulo ou cor), evitando duplicar uma categoria que já existe.
+
+Na edição, o resultado já gravado vem pré-carregado; na criação parte de vazio.
+
 **Home** — um dashboard simples. Em um app real, com mais dados e funcionalidades, esta tela seria mais rica e cumpriria um papel mais central; aqui ela serve como ponto de entrada e demonstração.
 
 **Aba de Configurações** — mais um **design da possibilidade** do que funcionalidades reais. Em um app de produção esta aba é importante e teria várias opções além das colocadas como referência.
