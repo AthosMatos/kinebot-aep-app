@@ -25,6 +25,7 @@ function EditContent({ data }: { data: Analyse }) {
         activity: data.activity,
         evaluator: data.evaluator,
         analysisDate: data.analysisDate ? new Date(data.analysisDate) : undefined,
+        result: data.result ?? [],
     };
 
     const onSubmit = async (values: AnalysesInput) => {

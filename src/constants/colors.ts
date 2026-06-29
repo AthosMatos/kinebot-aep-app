@@ -4,7 +4,8 @@ const appColors = {
 	primary_dark: "#002FBB",
 	secondary: '#EFAC1E',
 	feedback: {
-		danger: '#D13342'
+		danger: '#D13342',
+		success: '#2EAD4B'
 	},
 	neutral: {
 		light: "#f5f5f5",

@@ -10,7 +10,7 @@
     "ios": {
       "icon": "./assets/expo.icon",
       "bundleIdentifier": "com.athosladies.kinebotAEP",
-			"buildNumber": "2"
+			"buildNumber": "3"
     },
     "android": {
       "adaptiveIcon": {
@@ -21,7 +21,7 @@
       },
       "predictiveBackGestureEnabled": false,
       "package": "com.athosladies.kinebotAEP",
-			"versionCode": 2
+			"versionCode": 3
     },
     "web": {
       "output": "static",

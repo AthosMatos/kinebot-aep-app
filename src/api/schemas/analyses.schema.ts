@@ -9,6 +9,16 @@ export const analysesSchema = z.object({
     activity: z.string().optional(),
     evaluator: z.string().optional(),
     analysisDate: z.date().optional(),
+    result: z
+        .array(
+            z.object({
+                key: z.string(),
+                label: z.string(),
+                color: z.string(),
+                percentage: z.number().min(0).max(100),
+            })
+        )
+        .optional(),
 });
 
 export type AnalysesInput = z.infer<typeof analysesSchema>;

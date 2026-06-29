@@ -4,16 +4,9 @@ import { useLocalSearchParams } from "expo-router";
 import { useAtomValue } from "jotai";
 import { View } from "react-native";
 import PieChart from 'react-native-pie-chart';
+import { RESULT_CATEGORIES } from "../../result.constants";
 import { analysePieSeriesAtom } from "../atoms";
 import { useAnalyseDataContext } from "../context";
-
-const possiblePieValues = [
-    { key: 'Aceitável', color: '#2EAD4B' },
-    { key: 'Moderado', color: '#F5B400' },
-    { key: 'Elevado', color: '#F2711C' },
-    { key: 'Muito elevado', color: '#E0301E' },
-    { key: 'Grave e iminente', color: '#7E3FF2' },
-]
 
 export const AnylsePieChart = () => {
     const { id } = useLocalSearchParams<{ id: string }>();
@@ -29,14 +22,14 @@ export const AnylsePieChart = () => {
                 </AppText>
             </View> : <AppLoad size={180} />}
             <View className="gap-4">
-                {possiblePieValues.map((ppv) =>
+                {RESULT_CATEGORIES.map((ppv) =>
                     <View className="flex-row gap-2"
                         key={ppv.key}>
                         <View
                             style={{ backgroundColor: ppv.color }}
                             className={`rounded w-5 h-5 `} />
                         <AppText className="">
-                            {ppv.key}
+                            {ppv.label}
                         </AppText>
                     </View>)}
             </View>

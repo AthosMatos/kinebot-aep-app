@@ -28,12 +28,14 @@ export const TextInputContainer = styled.View`
 
 export const StyledInput = styled.TextInput.attrs({
     placeholderClassName: "text-gray-200",
+    style: { textAlignVertical: "center", includeFontPadding: false },
 })`
     font-size: 16px;
-    color: #000000;    
+    color: #000000;
     margin: 0px;
     padding: 0px;
-    flex:1
+    flex: 1;
+    height: 100%;
 `;
 
 export const InputText = styled.Text<{ isPlaceholder?: boolean }>`    
