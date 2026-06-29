@@ -8,11 +8,26 @@ Desenvolvido como teste técnico para a vaga de **Desenvolvedor(a) Mobile Pleno 
 
 ## Sumário
 
+- [Demonstração](#demonstração)
 - [Stack principal](#stack-principal)
 - [Como rodar o projeto](#como-rodar-o-projeto)
 - [Arquitetura e organização de pastas](#arquitetura-e-organização-de-pastas)
 - [Decisões técnicas](#decisões-técnicas)
 - [Telas e premissas adotadas](#telas-e-premissas-adotadas)
+
+---
+
+## Demonstração
+
+<p align="center">
+  <img src="assets/screenshots/splash.gif" alt="Splash screen" width="240" />
+  <img src="assets/screenshots/login.gif" alt="Tela de login" width="240" />
+  <img src="assets/screenshots/analyses-list.gif" alt="Lista de análises AEP" width="240" />
+</p>
+
+<p align="center">
+  <em>Splash &nbsp;•&nbsp; Login (com animação da logo) &nbsp;•&nbsp; Lista de análises</em>
+</p>
 
 ---
 
